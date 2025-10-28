@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Vue.js Demo</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Vue.js Framework</h1>
+      <h2>Vue Demo Application</h2>
+    </header>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+    </nav>
+    <main id="app" class="main-content">
+      <h1 v-text="mainHeading"></h1>
+      <section v-if="foods.length" @click="isFlipped = !isFlipped" class="card">
+        <div>
+          <h2 v-text="isFlipped ? '' : foods[index].title"></h2>
+          <p v-text="isFlipped ? foods[index].description : ''"></p>
+        </div>
+        <img :src="foods[index].image" :alt="foods[index].title">
+      </section>
+      <div class="buttons" v-if="foods.length">
+        <button @click="move(-1)" type="button">Previous</button>
+        <button @click="move(1)" type="button">Next</button>
+      </div>
+      <p v-if="foods.length">
+        You can read more about
+        <a :href="foods[index].link" v-text="foods[index].title" target="_blank"></a>
+      </p>
+      <h3 v-if="foods.length">NOTE:</h3>
+      <p v-if="foods.length" v-html="foods[index].note"></p>
+      <hr v-if="foods.length">
+      <p>
+        To learn more you can check
+        <a :href="learnMoreUrl" target="_blank">"Global Street Food Guide"</a>
+      </p>
+    </main>
+    <footer>&copy; <span id="year"></span> - Vue.js Introduction Demo</footer>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="data/foods.js"></script>
+  <script>
+    const streetFoodApp = {
+      data() {
+        return {
+          mainHeading: "Global Street Food Favorites",
+          foods: window.globalStreetFoods || [],
+          isFlipped: false,
+          learnMoreUrl: "https://www.tasteatlas.com/best-rated-street-foods-in-the-world",
+          index: 0
+        };
+      },
+      methods: {
+        move(change) {
+          const target = this.index + change;
+          if (target < 0 || target >= this.foods.length) {
+            return;
+          }
+          this.index = target;
+          this.isFlipped = false;
+        }
+      },
+      mounted() {
+        const yearElement = document.getElementById("year");
+        if (yearElement) {
+          yearElement.textContent = new Date().getFullYear();
+        }
+      }
+    };
+
+    const app = Vue.createApp(streetFoodApp).mount("#app");
+  </script>
+</body>
+</html>
