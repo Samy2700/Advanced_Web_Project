@@ -62,7 +62,6 @@ header h2 {
 
 .main-content {
   padding: 40px;
-  background: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -158,46 +157,12 @@ header h2 {
   text-decoration: underline;
 }
 
-.main-sidebar {
-  padding: 40px;
-  background: #fff9f4;
-  border-left: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.main-sidebar dl {
-  margin: 0;
-}
-
-.main-sidebar dt {
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #ff6d00;
-}
-
-.main-sidebar dd {
-  margin: 0 0 24px;
-  color: #4a3f36;
-  line-height: 1.6;
-}
-
 footer {
-  grid-column: 1 / -1;
   padding: 16px 40px;
   background: #ff8a3d;
   color: #ffffff;
   text-align: center;
   font-weight: 600;
-}
-
-@media (max-width: 1024px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-  }
-
-  .main-sidebar {
-    border-left: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-  }
 }
 
 @media (max-width: 768px) {
@@ -228,10 +193,6 @@ footer {
 
   .buttons button {
     flex: 1 1 120px;
-  }
-
-  .main-sidebar {
-    padding: 28px 24px;
   }
 }
 
