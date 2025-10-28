@@ -14,16 +14,11 @@
       <h2>Vue Demo Application</h2>
     </header>
     <nav class="main-nav">
-      <ul>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
-      </ul>
     </nav>
     <main id="app" class="main-content">
       <h1 v-text="mainHeading"></h1>
       <section v-if="foods.length" @click="isFlipped = !isFlipped" class="card">
-        <div>
+        <div class="card-copy">
           <h2 v-text="isFlipped ? '' : foods[index].title"></h2>
           <p v-text="isFlipped ? foods[index].description : ''"></p>
         </div>
